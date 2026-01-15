@@ -25,7 +25,7 @@ app.get('/erro', (req, res) =>{
     })
 })
 
-app.get('/')
+app.get('/usuario/:id')
 
 app.listen(port, () => {
     console.log(`Aplicação rodando em http://localhost:${port}`);
