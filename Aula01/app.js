@@ -76,6 +76,18 @@ app.put('/api/usuario/:id', (req, res)=>{
         res.status(400).json({"msg": 'NEnhum usuario encontrado com este id'})
         return
     }
+    const index = Usuarios.findIndex(u => u.id === parseInt(id));
+    if(index === -1){
+        res.status(404).json({"msg": "Nenhum usuario encontrado "})
+    }
+    usuario[index] = {
+        id: id,
+        nome: nome,
+        email: email
+    }
+    res.status(200).json({"msg": "usuario atualizado com sucesso",
+        "usuario": usuarios[index]
+    })
 })
 
 
