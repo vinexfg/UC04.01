@@ -69,6 +69,14 @@ app.post('/api/usuarios', (req, res)=> {
 })
 
 
+app.put('/api/usuario/:id', (req, res)=>{
+    const {id} = req.params;
+    const {nome, email, telefone} = req.body
+    if(!nome || !email || !telefone){
+        res.status(400).json({"msg": 'NEnhum usuario encontrado com este id'})
+        return
+    }
+})
 
 
 
