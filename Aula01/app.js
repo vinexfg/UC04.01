@@ -25,7 +25,13 @@ app.get('/erro', (req, res) =>{
     })
 })
 
-app.get('/usuario/:id')
+app.get('/usuario/:id', (req, res)=> {
+    const {id} = req.params;
+    res.status(200).json({
+        id: id,
+        nome: "User exemplo"
+    })
+})
 
 app.listen(port, () => {
     console.log(`Aplicação rodando em http://localhost:${port}`);
