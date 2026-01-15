@@ -3,9 +3,17 @@ import express from "express";
 const app = express();
 const port = 3000;
 
+
+// Banco de dados em memoria
+
 app.get('/', (req, res) => {
     res.send("Hello World!!");
 });
+
+
+app.get('/Teste', (req, res)=> {
+    res.status(200).send('Teste')
+})
 
 app.get('/Usuario', (req, res) => {
     res.json({
@@ -14,6 +22,14 @@ app.get('/Usuario', (req, res) => {
         cidade: "RN"
     });
 });
+
+app.get('/Livro', (req, res)=>{
+    res.json({
+        Livro: "Dante",
+        Paginas: 899,
+        Author: "casaBahia"
+    })
+})
 
 app.get('/status', (req, res) => {
     res.status(200).send("tudo ok!");
