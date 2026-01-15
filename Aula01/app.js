@@ -4,7 +4,74 @@ const app = express();
 const port = 3000;
 
 
+
+app.use(express.json())
+
 // Banco de dados em memoria
+let Usuarios = [
+    {
+        id:1,
+        nome: "Vinicius",
+        email: ' Vinisilvas23@contato.com',
+        telefone: "(84)99822-1121" 
+    },
+    {
+        id:2,
+        nome: 'Vinicius Almeida',
+        email: "viniciusgoncalves@.almeida.com",
+        telefone: "(84)99855-4343"
+    }
+]
+
+
+app.get('/api/usuarios', (req, res) =>{
+    res.status(200).json({"Usuarios": Usuarios})
+})
+
+app.get('/api/usuarios/:id', (req, res)=>{
+    const {id} = req.params;
+    const usuario = Usuarios.find(u => u.id === parseInt(id));
+    if(!usuario){
+        res.status(404).json({"msg": "Nenhum Usuario encontrado"})
+        return
+    }
+    res.status(200).json({"msg": "Usuario encontrado.", usuario})
+})
+
+
+
+
+
+
+
+
+app.post('/api/usuarios', (req, res)=> {
+    const {nome, email, telefone } = req.body;
+    if(!nome || !email || !telefone){
+        res.status(400).json({"msg": "todos os campos  sao obrigadatorios"})
+        return
+    }
+
+    const novoUsuario = {
+        id:Usuarios.length + 1,
+        nome: nome,
+        email: email,
+        telefone: telefone,        
+    }
+    Usuarios.push(novoUsuario)
+
+    res.status(201).json({
+        'msg': 'Usuario criado com sucesso',
+        "usuario": "novoUsuario",
+        
+    }
+    )
+})
+
+
+
+
+
 
 app.get('/', (req, res) => {
     res.send("Hello World!!");
