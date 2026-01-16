@@ -89,7 +89,7 @@ app.put("/api/usuarios/:id", (req, res) => {
     });
 });
 
-// DELETE
+
 app.delete("/api/usuarios/:id", (req, res) => {
     const id = Number(req.params.id);
     const index = Usuarios.findIndex(u => u.id === id);
