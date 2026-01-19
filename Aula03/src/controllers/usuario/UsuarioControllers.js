@@ -10,7 +10,8 @@ export class UsuarioController{
             }
             res.status(200).json({msg: "Usuarios Encontrado", usuarios})
         } catch (error){
-
+            res.status(500).json({msg: "Erro interno ao lista os usuarios", erro: error.message})
         }
     }
 }
+
