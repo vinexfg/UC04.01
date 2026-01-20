@@ -6,7 +6,11 @@ const router =express.Router();
 
 //Rota para listar todos os usuarios
 
-router.get(',', UsuarioController.listarUsuarios);
+router.get('/', UsuarioController.listarUsuarios);
 
+
+//Rota para buscar usuario por id
+
+router.get('/:id', UsuarioController.buscarPorId);
 
 export default router

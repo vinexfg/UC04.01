@@ -42,9 +42,14 @@
                 res.status(404).json({msg: "O id nao pode ser vazio"})
                 return
             }
-            const usuario = UsuarioModel.buscarPorId(id)   
+            const usuario = UsuarioModel.buscarPorId(id)
+            if(!usuario){
+                res.status(404).json({msg: " nenhum usuario com esse ID"})
+                return
+            }  
+            res.status(200).json({msg: "usuario encontrado", usuario}) 
         } catch(error){
-
+            res.status(500).json({msg: "erro interno ao buscar usuario por ID", erro: error.message})
         }
     }
 }
