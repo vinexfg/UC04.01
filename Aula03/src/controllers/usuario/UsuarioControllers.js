@@ -33,5 +33,15 @@ export class UsuarioController {
             res.status(500).json({ msg: "Erro interno ao buscar usuário por ID", erro: error.message });
         }
     }
+
+    static criarUsuario(req, res){
+        try{
+            const {nome, email, telefone}= req.body;
+            if(!nome || !email || !telefone){
+                res.status(400).json({msg: "Todos os campos devem ser prenchidos no cade"})
+                return;
+            }
+        }
+    }
 }
 
