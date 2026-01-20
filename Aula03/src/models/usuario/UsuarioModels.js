@@ -34,4 +34,17 @@
         usuarios.splice(index, 1);
         return true
     }
+
+    static buscarPorId(req, re){
+        try{
+            const {id} = req.params;
+            if(!id){
+                res.status(404).json({msg: "O id nao pode ser vazio"})
+                return
+            }
+            const usuario = UsuarioModel.buscarPorId(id)   
+        } catch(error){
+
+        }
+    }
 }
