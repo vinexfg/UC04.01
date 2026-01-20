@@ -1,8 +1,8 @@
 import express from 'express'
-import {UsuarioController} from "../../controllers/usuario/UsuarioControllers"
+import { UsuarioController } from "../../controllers/usuario/UsuarioControllers.js"
 
 
-const router =express.Router();
+const router = express.Router();
 
 //Rota para listar todos os usuarios
 
