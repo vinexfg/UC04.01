@@ -34,4 +34,6 @@ export class UsuarioModel {
         usuarios.splice(index, 1);
         return true
     }
+
+    
 }
