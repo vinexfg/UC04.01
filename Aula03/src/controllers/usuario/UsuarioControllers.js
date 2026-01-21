@@ -93,5 +93,14 @@ export class UsuarioController {
             res.status(500).json({msg: "erro interno ao deletar o usuario", error: error.message});
         }
     }
+
+    static buscarPorEmail(req, res){
+        try{
+            const {email} = req.params
+            if(!email){
+                res.status
+            }
+        }
+    }
     }
 
