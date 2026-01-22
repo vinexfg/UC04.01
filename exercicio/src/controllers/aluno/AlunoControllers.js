@@ -4,11 +4,12 @@ import { AlunosModel } from "../../models/Aluno/AlunoModels.js";
 export class AlunosController{
     static listarAlunos(req, res){
         try{
-            const alunos = alunos.listarAlunos()
+            const alunos = AlunosModel.listarAlunos()
             if(alunos.length === 0 || !alunos){
                 res.status(200).json({msg: "Nenhum alunon encontrado"})
                 return
-            } 
+            }
+            res.status(200).json({msg: "Alunos listados com sucesso", alunos})
             } catch(error){
                 res.status(500).json({msg: "Erro interno ao lista os alunos", erro: error.message})
 
@@ -40,10 +41,6 @@ export class AlunosController{
                 const{nome, idade, curso, matricula}= req.body;
                 if(!nome || !idade || !curso || !matricula){
                     res.status(400).json({msg: "Todos so campos devem ser prenchidos"})
-                    return
-                }
-                if(!id){
-                    res.status(400).json({msg: "Aluno nao encontrado"})
                     return
                 }
 
@@ -88,14 +85,14 @@ export class AlunosController{
                     return
                 }
                 const delAluno = AlunosModel.deletarAluno(id)
-                if(!this.deletarAluno){
-                    res.status(404).jsoN({msg: "Aluno nao encotrado com esse id"})
+                if(!delAluno){
+                    res.status(404).json({msg: "Aluno nao encotrado com esse id"})
                     return
                 }
 
                 res.status(200).json({msg: "Aluno deletado com seucesso"})
             }catch(error){
-                req.status(500).json({msg: "erro interno ao deletar o aluno", error: error.message})
+                res.status(500).json({msg: "erro interno ao deletar o aluno", error: error.message})
             }
         }
     }

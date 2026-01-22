@@ -2,15 +2,15 @@ import { alunos } from "../../data/banco.js";
 
 
 export class AlunosModel{
-    static listarTods(){
+    static listarAlunos(){
         return alunos
     }
 
-    static buscarPorid(id){
+    static buscaPorId(id){
         return alunos.find(a => a.id === parseInt(id))
     }
 
-    static criarAluno(nome, idade, curso, matricula){
+    static criarAlunos(nome, idade, curso, matricula){
         const novoAluno ={
             id: alunos.length + 1,
             nome: nome,
@@ -19,6 +19,7 @@ export class AlunosModel{
             matricula: matricula
         }
         alunos.push(novoAluno)
+        return novoAluno
     }
 
     static atualizarAluno(id, nome, idade, curso, matricula){
