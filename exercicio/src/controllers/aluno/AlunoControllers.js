@@ -1,4 +1,4 @@
-import { AlunosModel } from "../../models/Aluno/AlunoModel.js";
+import { AlunosModel } from "../../models/Aluno/AlunoModels.js";
 
 
 export class AlunosController{

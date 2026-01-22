@@ -1,5 +1,5 @@
 import express from 'express'
-import { AlunosController } from '../../controllers/aluno/AlunoControllers'
+import { AlunosController } from '../../controllers/aluno/AlunoControllers.js'
 
 
 
