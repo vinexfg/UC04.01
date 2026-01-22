@@ -29,7 +29,7 @@ export class AlunosController {
                 res.status(404).json({ msg: "Nenhum aluno encontrado" })
                 return
             }
-            res.status(200).json({ msg: "aluno encontrado com suceesso", alunos })
+            res.status(200).json({ msg: "aluno encontrado com sucesso", alunos })
 
         } catch (error) {
             res.status(500).json({ msg: "Erro interno ao buscar aluno por ID", erro: error.message })
@@ -41,6 +41,12 @@ export class AlunosController {
             const { nome, idade, curso, matricula } = req.body;
             if (!nome || !idade || !curso || !matricula) {
                 res.status(400).json({ msg: "Todos os campos devem ser preenchidos" })
+                return
+            }
+
+            const matriculaExistente = AlunosModel.buscarPorMatricula(matricula)
+            if (matriculaExistente) {
+                res.status(400).json({ msg: "Matricula ja cadastrada" })
                 return
             }
 
@@ -68,6 +74,11 @@ export class AlunosController {
             const alunoid = AlunosModel.buscaPorId(id)
             if (!alunoid) {
                 res.status(404).json({ msg: "aluno nao encontrado" })
+                return
+            }
+            const matriculaExistente = AlunosModel.buscarPorMatricula(matricula)
+            if (matriculaExistente && matriculaExistente.id !== parseInt(id)) {
+                res.status(400).json({ msg: "Matricula ja cadastrada para outro aluno" })
                 return
             }
             const alunoNovo = AlunosModel.atualizarAluno(id, nome, idade, curso, matricula)
