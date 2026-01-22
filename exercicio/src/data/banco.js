@@ -7,7 +7,7 @@ export let alunos = [
     matricula: "123256"
   },
   {
-    id: 1,
+    id: 2,
     nome: "Vini",
     idade: "23",
     curso: "ADS",
