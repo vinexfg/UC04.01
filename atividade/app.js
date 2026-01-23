@@ -52,7 +52,7 @@ app.put('/alunos/:id', (req, res) => {
         return res.status(404).json({ mensagem: "Aluno não encontrado!" })
     }
 
-    const alunoAtualizado = { id, ...req.body }a
+    const alunoAtualizado = { id, ...req.body }
     alunos[index] = alunoAtualizado
     res.json(alunoAtualizado)
 })
