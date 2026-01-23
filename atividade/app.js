@@ -67,7 +67,7 @@ app.delete('/alunos/:id', (req, res) => {
 
     alunos.splice(index, 1)
     res.json({ mensagem: "Aluno removido com sucesso!" })
-})a
+})
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta http://localhost:${PORT}`)
