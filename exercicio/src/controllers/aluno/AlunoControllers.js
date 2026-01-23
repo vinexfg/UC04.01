@@ -78,7 +78,7 @@ export class AlunosController {
             }
             const matriculaExistente = AlunosModel.buscarPorMatricula(matricula)
             if (matriculaExistente && matriculaExistente.id !== parseInt(id)) {
-                res.status(400).json({ msg: "Matricula ja cadastrada para outro aluno" })
+                res.status(404).json({ msg: "Matricula ja cadastrada para outro aluno" })
                 return
             }
             const alunoNovo = AlunosModel.atualizarAluno(id, nome, idade, curso, matricula)
