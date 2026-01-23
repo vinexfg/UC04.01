@@ -46,12 +46,12 @@ export class AlunosController {
 
             const matriculaExistente = AlunosModel.buscarPorMatricula(matricula)
             if (matriculaExistente) {
-                res.status(400).json({ msg: "Matricula ja cadastrada" })
+                res.status(404).json({ msg: "Matricula ja cadastrada" })
                 return
             }
 
             const alunoNovo = AlunosModel.criarAlunos(nome, idade, curso, matricula)
-            res.status(200).json({ msg: "Aluno Cadastrado com sucesso", alunoNovo })
+            res.status(201).json({ msg: "Aluno Cadastrado com sucesso", alunoNovo })
 
         } catch (error) {
             res.status(500).json({ msg: "Erro interno ao cadastrar o aluno", erro: error.message })
@@ -68,7 +68,7 @@ export class AlunosController {
                 return
             }
             if (!id) {
-                res.status(400).json({ msg: "nenhum id encontrado" })
+                res.status(404).json({ msg: "nenhum id encontrado" })
                 return
             }
             const alunoid = AlunosModel.buscaPorId(id)
@@ -78,7 +78,7 @@ export class AlunosController {
             }
             const matriculaExistente = AlunosModel.buscarPorMatricula(matricula)
             if (matriculaExistente && matriculaExistente.id !== parseInt(id)) {
-                res.status(400).json({ msg: "Matricula ja cadastrada para outro aluno" })
+                res.status(404).json({ msg: "Matricula ja cadastrada para outro aluno" })
                 return
             }
             const alunoNovo = AlunosModel.atualizarAluno(id, nome, idade, curso, matricula)
