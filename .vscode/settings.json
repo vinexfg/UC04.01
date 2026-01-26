@@ -1,0 +1,10 @@
+{
+  "animations.enabled": true,
+  "animations.Install-Method": "Apc Customize UI++",
+  "animations.Command-Palette": "Scale",
+  "animations.Tabs": "Slide",
+  "animations.Active": "Smooth",
+  "animations.Smooth-Mode": "Smooth",
+  "animations.Duration": 0.3,
+  "animations.Delay": 0
+}
