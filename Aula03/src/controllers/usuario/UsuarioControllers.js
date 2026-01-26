@@ -5,12 +5,12 @@ export class UsuarioController {
         try {
             const usuarios = UsuarioModel.listarTodos()
             if (usuarios.length === 0 || !usuarios) {
-                res.status(200).json({ msg: "nenhum usuario no banco" })
+                res.status(200).json({ msg: "Nenhum usuário no banco" })
                 return
             }
-            res.status(200).json({ msg: "Usuarios Encontrado", usuarios })
+            res.status(200).json({ msg: "Usuários encontrados", usuarios })
         } catch (error) {
-            res.status(500).json({ msg: "Erro interno ao lista os usuarios", erro: error.message })
+            res.status(500).json({ msg: "Erro interno ao listar os usuários", erro: error.message })
         }
     }
 
@@ -38,11 +38,11 @@ export class UsuarioController {
         try{
             const {nome, email, telefone}= req.body;
             if(!nome || !email || !telefone){
-                res.status(400).json({msg: "Todos os campos devem ser prenchidos no cade"})
+                res.status(400).json({msg: "Todos os campos devem ser preenchidos no cadastro"})
                 return;
             }
             const novoUsuario = UsuarioModel.criarUsuario(nome, email, telefone);
-            res.status(200).json({msg: "USuario criado com sucesso!", novoUsuario})
+            res.status(200).json({msg: "Usuário criado com sucesso!", novoUsuario})
         }
         catch(erro){
             res.status(500).json({msg: "Erro interno ao cadastrar usuario", erro: erro.message})
@@ -54,24 +54,24 @@ export class UsuarioController {
             const {id} = req.params
             const{nome, email, telefone} = req.body;
             if(!nome || !email || !telefone){
-                res.status(400).json({msg: "Todos os campos devem ser preechidos na atualziacao"})
+                res.status(400).json({msg: "Todos os campos devem ser preenchidos na atualização"})
                 return
             }
 
             if(!id){
-                res.status(400).json({msg: "Nenhum id fornecido na atualizacao."})
+                res.status(400).json({msg: "Nenhum ID fornecido na atualização"})
                 return
             }
 
             const usuarioId = UsuarioModel.buscarPorId(id)
             if(!usuarioId){
-                res.status(404).json({msg: "Usuario nao encontrado"})
+                res.status(404).json({msg: "Usuário não encontrado"})
                 return
             }
             const novoUsuario = UsuarioModel.atualizarUsuario(id,nome,email, telefone)
             res.status(201).json({msg: "Usuario atualizado com sucesso", novoUsuario})
         } catch(erro){
-            res.status(500).json({msg: "Erron no interno ao atualziar", erro: erro.message})
+            res.status(500).json({msg: "Erro interno ao atualizar", erro: erro.message})
         }
     }
 
@@ -80,12 +80,12 @@ export class UsuarioController {
         try{
             const {id} = req.params
             if(!id){
-                res.status(400).json({msg: "id deve ser fornecido"})
+                res.status(400).json({msg: "ID deve ser fornecido"})
                 return
             }
             const delUsuario = UsuarioModel.deletarUsuario(id);
             if(!delUsuario){
-                res.status(404).json({msg: "Usuario nao encontrado com este id"})
+                res.status(404).json({msg: "Usuário não encontrado com este ID"})
                 return
             }
             res.status(200).json({msg: "Usuario deletado com sucesso"})
@@ -98,9 +98,18 @@ export class UsuarioController {
         try{
             const {email} = req.params
             if(!email){
-                res.status
+                res.status(400).json({msg: "Email deve ser fornecido"})
+                return
             }
+            const usuario = UsuarioModel.buscarPorEmail(email)
+            if(!usuario){
+                res.status(404).json({msg: "Nenhum usuário encontrado com este email"})
+                return
+            }
+            res.status(200).json({msg: "Usuário encontrado", usuario})
+        } catch(error){
+            res.status(500).json({msg: "Erro interno ao buscar por email", erro: error.message})
         }
     }
-    }
+}
 

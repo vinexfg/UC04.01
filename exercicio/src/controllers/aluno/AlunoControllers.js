@@ -21,7 +21,7 @@ export class AlunosController {
         try {
             const { id } = req.params
             if (!id) {
-                res.status(400).json({ msg: "O ID nao pode ser vazio amigo" })
+                res.status(400).json({ msg: "O ID não pode ser vazio" })
                 return
             }
             const alunos = AlunosModel.buscaPorId(id);
@@ -29,7 +29,7 @@ export class AlunosController {
                 res.status(404).json({ msg: "Nenhum aluno encontrado" })
                 return
             }
-            res.status(200).json({ msg: "aluno encontrado com sucesso", alunos })
+            res.status(200).json({ msg: "Aluno encontrado com sucesso", alunos })
 
         } catch (error) {
             res.status(500).json({ msg: "Erro interno ao buscar aluno por ID", erro: error.message })
@@ -46,7 +46,7 @@ export class AlunosController {
 
             const matriculaExistente = AlunosModel.buscarPorMatricula(matricula)
             if (matriculaExistente) {
-                res.status(404).json({ msg: "Matricula ja cadastrada" })
+                res.status(404).json({ msg: "Matrícula já cadastrada" })
                 return
             }
 
@@ -68,17 +68,17 @@ export class AlunosController {
                 return
             }
             if (!id) {
-                res.status(404).json({ msg: "nenhum id encontrado" })
+                res.status(404).json({ msg: "Nenhum ID encontrado" })
                 return
             }
             const alunoid = AlunosModel.buscaPorId(id)
             if (!alunoid) {
-                res.status(404).json({ msg: "aluno nao encontrado" })
+                res.status(404).json({ msg: "Aluno não encontrado" })
                 return
             }
             const matriculaExistente = AlunosModel.buscarPorMatricula(matricula)
             if (matriculaExistente && matriculaExistente.id !== parseInt(id)) {
-                res.status(404).json({ msg: "Matricula ja cadastrada para outro aluno" })
+                res.status(404).json({ msg: "Matrícula já cadastrada para outro aluno" })
                 return
             }
             const alunoNovo = AlunosModel.atualizarAluno(id, nome, idade, curso, matricula)
@@ -97,7 +97,7 @@ export class AlunosController {
             }
             const delAluno = AlunosModel.deletarAluno(id)
             if (!delAluno) {
-                res.status(404).json({ msg: "Aluno nao encontrado com esse id" })
+                res.status(404).json({ msg: "Aluno não encontrado com esse ID" })
                 return
             }
 
