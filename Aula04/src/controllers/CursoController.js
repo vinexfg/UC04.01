@@ -105,4 +105,5 @@ export class CursoController {
             res.status(500).json({ msg: "Erro interno ao buscar alunos do curso", erro: error.message });
         }
     }
+    
 }

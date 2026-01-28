@@ -1,5 +1,5 @@
 export const cursos = [
-    {id: 1, nome:' tecnico em informatica'},
-    {id: 2, nome: 'Arquitetura'}
-]
+    { id: 1, nome: 'Técnico em Informática' },
+    { id: 2, nome: 'Arquitetura' }
+];
 
