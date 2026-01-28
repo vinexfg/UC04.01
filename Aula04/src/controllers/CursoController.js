@@ -1,4 +1,4 @@
-import { CursoModel } from "../models/CursoModel";
+import { CursoModel } from "../models/CursoModel.js";
 
 export class CursoController {
     static listarCurso(req, res) {
@@ -105,5 +105,5 @@ export class CursoController {
             res.status(500).json({ msg: "Erro interno ao buscar alunos do curso", erro: error.message });
         }
     }
-    
+
 }
