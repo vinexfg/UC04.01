@@ -1,11 +1,11 @@
 import { UsuarioModel } from "../models/UsuarioMdeols.js";
 import axios from "axios"
 
-export class UusuarioController{
+export class UsuarioController{
     static listarUsuario(req, res){
         try{
             const usuarios = UsuarioModel.listarUsuario();
-            if(!usuarios || usuarios.lengtj === 0){
+            if(!usuarios || usuarios.length === 0){
                 res.status(404).json({msg: "nenhum usuario cadastrado"})
                 return
             }
@@ -21,10 +21,10 @@ export class UusuarioController{
         try {
             const {nome, email, telefone, cep} = req.body;
             if(!nome || !email || !telefone || !cep){
-                res.status(400).json({msg: "todos os campos devem ser prenchido"})
+                res.status(400).json({msg: "todos os campos devem ser preenchidos"})
                 return
             } 
-            const buscarCep = await axios.get(`viacep.com.br/ws/${cep}/json/`)
+            const buscarCep = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
             if(buscarCep.erro){
                 res.status(400).json({msg: "CEP invalido"})
                 return
@@ -36,15 +36,14 @@ export class UusuarioController{
                 email: email,
                 telefone: telefone,
                 cep: cep,
-                logaradouro: buscarCep.data.logaradouro,
+                logradouro: buscarCep.data.logradouro,
                 uf: buscarCep.data.uf
             }
-            const userCriado = UsuarioModel(novoUsuario);
+            const userCriado = UsuarioModel.criarUsuario(novoUsuario);
             res.status(200).json({msg: "Usuario criado com sucesso!", userCriado});
 
-
         } catch (error) {
-            res.status(500).json({msg: "Erro intero ao criar o usuario", erro: error.message})
+            res.status(500).json({msg: "Erro interno ao criar o usuario", erro: error.message})
             
         }
     }

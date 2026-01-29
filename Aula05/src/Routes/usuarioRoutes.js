@@ -1,21 +1,21 @@
 import express from 'express';
-import { UusuarioController } from '../controllers/UsuarioController.js';
+import { UsuarioController } from '../controllers/UsuarioController.js';
 
 const router = express.Router();
 
 // Listar todos os usuários
-router.get('/', UusuarioController.listarUsuario);
+router.get('/', UsuarioController.listarUsuario);
 
 // Buscar usuário por ID
-router.get('/:id', UusuarioController.buscarPorId);
+router.get('/:id', UsuarioController.buscarPorId);
 
 // Criar novo usuário
-router.post('/', UusuarioController.criarUsuario);
+router.post('/', UsuarioController.criarUsuario);
 
 // Atualizar usuário
-router.put('/:id', UusuarioController.atualizarUsuario);
+router.put('/:id', UsuarioController.atualizarUsuario);
 
 // Deletar usuário
-router.delete('/:id', UusuarioController.deletarUsuario);
+router.delete('/:id', UsuarioController.deletarUsuario);
 
 export default router;
