@@ -18,4 +18,7 @@ router.put('/:id', UsuarioController.atualizarUsuario);
 // Deletar usuário
 router.delete('/:id', UsuarioController.deletarUsuario);
 
+// Buscar CEP
+router.get('/cep/:cep', UsuarioController.buscarCep);
+
 export default router;

@@ -13,21 +13,22 @@ export class UsuarioModel{
         return novoUsuario
     }
 
-    static atualizarUsuario(id, novosDados){
-        const index = usuarios.findIndex(u=> u.id === parseInt(id));
+    static atualizarUsuario(id, novosDados) {
+        const index = usuarios.findIndex(u => u.id === parseInt(id));
         if (index !== -1) {
-            novosDados[index] = { ...usuarios[index], ...novosDados };
-            return novosDados[index];
+            usuarios[index] = { ...usuarios[index], ...novosDados };
+            return usuarios[index];
         }
         return null;
     }
 
-    static deletarUsuario(){
-        const index = usuarios.findIndex(u => u.id === parseInt(id))
-        if(index === -1){
-            return false
+    static deletarUsuario(id) {
+        const index = usuarios.findIndex(u => u.id === parseInt(id));
+        if (index === -1) {
+            return false;
         }
-        usuarios.splice(index, 1)
-        return true
+        usuarios.splice(index, 1);
+        return true;
     }
+    
 }
