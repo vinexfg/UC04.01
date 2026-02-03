@@ -140,12 +140,23 @@ export class UsuarioController{
             const {id} = req.params
             const usuario = UsuarioModel.deletarUsuario(id)
             if(!usuario){
-                res.status(404).json({msg: "Memhu, usuario encontrado com esse ID"})
+                res.status(404).json({msg: "Nenhum usuário encontrado com esse ID"})
                 return
             }
-            res.status(200).json({msg: "suaurio deletado com sucesso"})
+            res.status(200).json({msg: "Usuário deletado com sucesso"})
         }catch(error){
             res.status(500).json({msg: "Erro interno ao deletar usuario!", erro: error.message})
         }
     }
+
+    static atualizarPacialmente(req ,res){
+        try {
+            const {id} = req.params
+            const campos = {...req.body} // pode conter nome, email ou senha 
+        } catch (error) {
+            
+        }
+    }
+
+
 }
