@@ -149,12 +149,30 @@ export class UsuarioController{
         }
     }
 
-    static atualizarPacialmente(req ,res){
+    static atualizarParcialmente(req, res){
         try {
             const {id} = req.params
-            const campos = {...req.body} // pode conter nome, email ou senha 
-        } catch (error) {
+            const campos = {...req.body} // pode conter nome, email ou senha
             
+            // Verifica se há campos para atualizar
+            if(Object.keys(campos).length === 0){
+                return res.status(400).json({msg: "Nenhum campo fornecido para atualização"})
+            }
+            
+            // Se houver senha, criar hash
+            if(campos.senha){
+                campos.senha = bcrypt.hashSync(campos.senha, 10)
+            }
+            
+            const usuarioAtualizado = UsuarioModel.atualizarUsuario(id, campos)
+            
+            if(!usuarioAtualizado){
+                return res.status(404).json({msg: "Usuário não encontrado"})
+            }
+            
+            res.status(200).json({msg: "Usuário atualizado com sucesso", usuario: usuarioAtualizado})
+        } catch (error) {
+            res.status(500).json({msg: "Erro interno ao atualizar usuário", erro: error.message})
         }
     }
 
