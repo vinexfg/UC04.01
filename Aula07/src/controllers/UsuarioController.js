@@ -86,4 +86,37 @@ export class UsuarioController{
             res.status(500).json({error: error.message});
         }
     }
+
+    static login(req, res){
+        try{
+            const {email, senha} = req.body;
+            
+            if(!email || !senha){
+                return res.status(400).json({error: "Email e senha tem que ser digitado"});
+            }
+
+            const usuario = UsuarioModel.buscarPorEmail(email);
+            
+            if(!usuario){
+                return res.status(400).json({error: "Email ou senha errado"});
+            }
+
+            const senhaValida = bcrypt.compareSync(senha, usuario.senha);
+            
+            if(!senhaValida){
+                return res.status(400).json({error: "Email ou senha incorreto"});
+            }
+
+            res.status(200).json({
+                message: "Login realizado",
+                usuario: {
+                    id: usuario.id,
+                    nome: usuario.nome,
+                    email: usuario.email
+                }
+            });
+        } catch(error){
+            res.status(500).json({error: error.message});
+        }
+    }
 }

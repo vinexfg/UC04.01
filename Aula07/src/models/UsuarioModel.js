@@ -8,6 +8,9 @@ export class UsuarioModel{
     static buscarPorId(id){
         return usuarios.find(u => u.id === id)
     }
+    static buscarPorEmail(email){
+        return usuarios.find(u => u.email === email)
+    }
     static criarUsuario(usuario){
         usuarios.push(usuario)
         return usuario;
