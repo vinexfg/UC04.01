@@ -17,3 +17,4 @@ router.delete('/usuarios/:id', verificarToken, UsuarioController.deletarUsuario)
 
 
 export default router;
+a
