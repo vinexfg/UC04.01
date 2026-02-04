@@ -1,6 +1,7 @@
 import {UsuarioModel} from "../models/UsuarioModel.js"
 import bcrypt from "bcrypt";
 import {v4 as uuidv4} from "uuid";
+import jwt from "jsonwebtoken";
 
 
 
@@ -107,8 +108,16 @@ export class UsuarioController{
                 return res.status(400).json({error: "Email ou senha incorreto"});
             }
 
+
+            const token = jwt.sign(
+                {id: usuario.id, email: usuario.email},
+                process.env.JWT_SECRET,
+                {expiresIn: '1h'}
+            );
+
             res.status(200).json({
-                message: "Login realizado",
+                message: "Login realizado com sucesso",
+                token: token,
                 usuario: {
                     id: usuario.id,
                     nome: usuario.nome,
@@ -159,7 +168,7 @@ export class UsuarioController{
                 return res.status(400).json({msg: "Nenhum campo fornecido para atualização"})
             }
             
-            // Se houver senha, criar hash
+        
             if(campos.senha){
                 campos.senha = bcrypt.hashSync(campos.senha, 10)
             }
