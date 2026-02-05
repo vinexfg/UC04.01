@@ -129,35 +129,6 @@ export class UsuarioController{
         }
     }
 
-    static buscarPorId(req, res){
-        try {
-            const {id} = req.params
-            const usuario = UsuarioModel.buscarPorId(id)
-            if(!usuario){
-                res.status(400).json({msg: "nenhum usuario encontrado com esse ID"})
-                return
-            }
-            res.status(200).json({msg: "Usuario encontrado", usuario})
-        } catch (error) {
-            res.status(500).json({msg: "Erro interno ao buscar ousuario por id", erro: error.message})
-            
-        }
-    }
-
-    static deletarUser(req,res){
-        try{
-            const {id} = req.params
-            const usuario = UsuarioModel.deletarUsuario(id)
-            if(!usuario){
-                res.status(404).json({msg: "Nenhum usuário encontrado com esse ID"})
-                return
-            }
-            res.status(200).json({msg: "Usuário deletado com sucesso"})
-        }catch(error){
-            res.status(500).json({msg: "Erro interno ao deletar usuario!", erro: error.message})
-        }
-    }
-
     static atualizarParcialmente(req, res){
         try {
             const {id} = req.params
