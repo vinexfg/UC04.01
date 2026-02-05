@@ -11,8 +11,11 @@ export class CursoModel {
     }
 
     static criarCurso(nome) {
+        const proximoId = cursos.length > 0
+            ? Math.max(...cursos.map(c => c.id)) + 1
+            : 1;
         const novoCurso = {
-            id: cursos.length + 1,
+            id: proximoId,
             nome: nome
         };
         cursos.push(novoCurso);

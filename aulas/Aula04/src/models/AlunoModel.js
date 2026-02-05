@@ -18,8 +18,11 @@ export class AlunoModel {
     }
 
     static criarAluno(matricula, nome, email, cursoId) {
+        const proximoId = alunos.length > 0
+            ? Math.max(...alunos.map(a => a.id)) + 1
+            : 1;
         const novoAluno = {
-            id: alunos.length + 1,
+            id: proximoId,
             matricula,
             nome,
             email,
@@ -31,6 +34,9 @@ export class AlunoModel {
 
     static atualizarAluno(id, matricula, nome, email, cursoId) {
         const index = alunos.findIndex(a => a.id === parseInt(id));
+        if (index === -1) {
+            return false;
+        }
         alunos[index] = {
             id: parseInt(id),
             matricula,
@@ -43,6 +49,9 @@ export class AlunoModel {
 
     static deletarAluno(id) {
         const index = alunos.findIndex(a => a.id === parseInt(id));
+        if (index === -1) {
+            return false;
+        }
         alunos.splice(index, 1);
         return true;
     }

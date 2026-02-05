@@ -4,7 +4,7 @@ export class AlunoController {
     static listarAlunos(req, res) {
         try {
             const alunos = AlunoModel.listarAlunos();
-            if (alunos.length === 0 || !alunos) {
+            if (!alunos || alunos.length === 0) {
                 res.status(200).json({ msg: "Nenhum aluno cadastrado no banco" });
                 return;
             }
