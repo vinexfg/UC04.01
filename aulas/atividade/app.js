@@ -59,7 +59,7 @@ app.put('/alunos/:id', (req, res) => {
 })
 
 app.delete('/alunos/:id', (req, res) => {
-    const id = parseInt(req.params.id) 
+    const id = parseInt(req.params.id)
     const index = alunos.findIndex(a => a.id === id)
 
     if (index === -1) {
@@ -70,6 +70,7 @@ app.delete('/alunos/:id', (req, res) => {
     res.json({ mensagem: "Aluno removido com sucesso!" })
 })
 
-app.listen(PORT, () => { 
+app.listen(PORT, () => {
     console.log(`Servidor rodando na porta http://localhost:${PORT}`)
 })
+s
