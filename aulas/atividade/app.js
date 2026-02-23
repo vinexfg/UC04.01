@@ -8,6 +8,7 @@ app.use(express.json())
 
 let alunos = [
     {
+        a
         id: 1,
         aluno: "vinicius Almeida",
         matricula: "18924985",
