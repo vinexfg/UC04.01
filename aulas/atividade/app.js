@@ -11,7 +11,7 @@ let alunos = [
         id: 1,
         aluno: "vinicius Almeida",
         matricula: "18924985",
-    },
+    }, a
     {
         id: 2,
         aluno: "vinicius silva",
